@@ -5,7 +5,7 @@ MAINTAINER aheimberger
 # setup default build arguments
 ARG USER_ID=no-id
 ARG USER_NAME=raider
-ARG GIT_BRANCH=master
+ARG GIT_BRANCH=develop
 ARG GIT_URL=https://github.com/AHeimberger/Raider.git
 ARG GIT_HASH=no-hash
 
@@ -16,7 +16,10 @@ RUN apt-get -qq update && \
     apt-get install -qq -y --no-install-recommends \
     \
     software-properties-common python-software-properties \
-    build-essential
+    build-essential \
+    git \
+    openssl \
+    ca-certificates
 
 
 # install Qt 5.6
