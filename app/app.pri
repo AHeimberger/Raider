@@ -1,0 +1,10 @@
+INCLUDEPATH += $$PWD/includes
+DEPENDPATH += $$PWD/includes
+
+LIBS += -lcore
+
+CORE_LIBDIR = $$OUT_PWD/../core
+
+LIBS += -L$${CORE_LIBDIR}/$${DESTDIR}/
+
+PRE_TARGETDEPS += $${CORE_LIBDIR}/$${DESTDIR}/$${LIB_PREFIX}Core$${LIB_SUFFIX}

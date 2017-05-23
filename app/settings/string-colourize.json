@@ -1,0 +1,48 @@
+{
+    "Enabled": true,
+    "PrintLastNumberLines": 5,
+    "RegularExpressions": [
+        {
+            "color": "green",
+            "preDelimiter": "",
+            "regex": "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}.\\d{3}",
+            "postDelimiter": "\t"
+        },
+        {
+            "color": "light_blue",
+            "preDelimiter": "\t",
+            "regex": "App.\\w*",
+            "postDelimiter": "\t"
+        },
+        {
+            "color": "yellow",
+            "preDelimiter": "\t",
+            "regex": "Debug",
+            "postDelimiter": "\t"
+        },
+        {
+            "color": "magenta",
+            "preDelimiter": "\t",
+            "regex": "Warning",
+            "postDelimiter": "\t"
+        },
+        {
+            "color": "red",
+            "preDelimiter": "\t",
+            "regex": "Critical",
+            "postDelimiter": "\t"
+        },
+        {
+            "color": "light_red",
+            "preDelimiter": "\t",
+            "regex": "Fatal",
+            "postDelimiter": ""
+        },
+        {
+            "color": "light_yellow",
+            "preDelimiter": "\t",
+            "regex": "Banana",
+            "postDelimiter": ""
+        }
+    ]
+}

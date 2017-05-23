@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>testobjects/filereadoperations_testfile.txt</file>
+    <file>testobjects/filereadoperations_testcompare_1.txt</file>
+    <file>testobjects/filereadoperations_testcompare_2.txt</file>
+    <file>testobjects/filereadoperations_testcompare_3.txt</file>
+    <file>testobjects/filereadoperations_testcompare_4.txt</file>
+</qresource>
+</RCC>
