@@ -1,3 +1,6 @@
+![MIT License](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![Build Status](https://travis-ci.org/AHeimberger/Raider.svg?branch=master)](https://travis-ci.org/AHeimberger/Raider)
+
 ![header](./documentation/header.png)
 
 Raider is a file listener which can do:
