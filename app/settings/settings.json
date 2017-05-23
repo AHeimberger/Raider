@@ -1,5 +1,5 @@
 {
-    "FileToSpy": "/home/aheimberger/Projects/Github//Raider/app/python/test.log",
-    "StringColourize": "/home/aheimberger/Projects/Github/Raider/app/settings/string-colourize.json",
-    "UdpTransmission": "/home/aheimberger/Projects/Github/Raider/app/settings/udp-transmission.json"
+    "FileToSpy": "ABSOLUT_PATH_TO/test.log",
+    "StringColourize": "ABSOLUT_PATH_TO/app/settings/string-colourize.json",
+    "UdpTransmission": "ABSOLUT_PATH_TO/app/settings/udp-transmission.json"
 }

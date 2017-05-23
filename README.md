@@ -27,7 +27,15 @@ Arguments:
 
 **Example:**
 ```
-python app/python/file-writer.py
-python app/python/udp-receiver.py
+// setup the file writer application
+python3 ./app/python/file-writer.py
+
+// create a udp socket do receive datagrams
+python3 ./app/python/udp-receiver.py
+
+// modify settings files
+vi ./app/settings/settings.json
+
+// build raider and start raider
 ./raider ABSOLUTE_PATH_TO/settings.json --highlight @light_cyan@\\t@Everyday@@
 ```
