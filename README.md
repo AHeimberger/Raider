@@ -1,5 +1,5 @@
 ![MIT License](https://img.shields.io/github/license/mashape/apistatus.svg)
-[![Build Status](https://travis-ci.org/AHeimberger/Raider.svg?branch=master)](https://travis-ci.org/AHeimberger/Raider)
+[![Build Status](https://travis-ci.org/AHeimberger/Raider.svg?branch=develop)](https://travis-ci.org/AHeimberger/Raider)
 
 ![header](./documentation/header.png)
 
