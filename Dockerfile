@@ -3,7 +3,8 @@ MAINTAINER aheimberger
 
 
 # setup default build arguments
-ARG USER_ID=no-id
+ARG GROUP_ID=1000
+ARG USER_ID=1000
 ARG USER_NAME=raider
 ARG GIT_BRANCH=develop
 ARG GIT_URL=https://github.com/AHeimberger/Raider.git
@@ -49,8 +50,8 @@ ENV DIR_PROJECT     ${DIR_HOME}/project
 
 
 # lets create the user
-RUN useradd -ms /bin/bash ${USER_NAME}
-USER ${USER_NAME}
+RUN groupadd -g "${GROUP_ID}" "${USER_NAME}" && \
+    useradd -u ${USER_ID} -g ${GROUP_ID} -ms /bin/bash ${USER_NAME}
 
 
 # setup directories
