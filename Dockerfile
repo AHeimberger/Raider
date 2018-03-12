@@ -6,9 +6,6 @@ MAINTAINER aheimberger
 ARG GROUP_ID=1000
 ARG USER_ID=1000
 ARG USER_NAME=raider
-ARG GIT_BRANCH=develop
-ARG GIT_URL=https://github.com/AHeimberger/Raider.git
-ARG GIT_HASH=no-hash
 
 
 # general requirements
@@ -59,13 +56,9 @@ RUN mkdir -p ${DIR_DEPLOY} && \
     mkdir -p ${DIR_PROJECT}
 
 
-# test it from remote
-RUN git clone -b ${GIT_BRANCH} ${GIT_URL} ${DIR_PROJECT} && \
-    if [ ${GIT_HASH} != "no-hash" ]; then cd ${DIR_PROJECT} && git reset --hard ${GIT_HASH}; fi
-
-
 # test it locally
-# COPY . ${DIR_PROJECT}
+COPY . ${DIR_PROJECT}
+RUN chown -R ${USER_NAME}:${USER_NAME} ${DIR_PROJECT}
 
 
 # setup the working directory
