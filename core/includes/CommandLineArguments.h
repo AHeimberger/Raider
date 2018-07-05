@@ -13,16 +13,19 @@
 
 class CommandLineArguments {
 public:
-    CommandLineArguments(QCoreApplication &app);
+    CommandLineArguments();
     bool parseArguments();
     QString getHelpText();
     QFile &getSettingsFile();
+    QString getLogDirectory();
+    bool getLogToFileEnabled();
     bool getPrintColors();
     QPair<Colors::Color, StringColourizeSettings> getHighlight();
 
 private:
-    QCoreApplication &_app;
     QString _helpText;
+    QString _logDirectory;
+    bool _logToFileEnabled;
     QFile _settingsFile;
     QString _highlight;
     bool _printColors;

@@ -7,20 +7,25 @@
 #include "UdpTransmission.h"
 #include <QTextStream>
 #include <QCoreApplication>
+#include <QDir>
 #include <QFile>
 #include <QBuffer>
 #include <QDebug>
 
 int main(int argc, char *argv[]) {
+
     QTextStream stream(stdout);
-
     QCoreApplication app(argc, argv);
-    qInstallMessageHandler(saveLogToFile);
 
-    CommandLineArguments commandLineArguments(app);
+    CommandLineArguments commandLineArguments;
     if ( !commandLineArguments.parseArguments() ) {
         stream << commandLineArguments.getHelpText();
         return -1;
+    }
+
+    if ( commandLineArguments.getLogToFileEnabled() ) {
+        setLogFilePath(QDir(commandLineArguments.getLogDirectory()).filePath("raider.log"));
+        qInstallMessageHandler(saveLogToFile);
     }
 
     if ( commandLineArguments.getPrintColors() ) {

@@ -1,32 +1,34 @@
 #include "CommandLineArguments.h"
 #include <QDebug>
+#include <QDir>
 
-CommandLineArguments::CommandLineArguments(QCoreApplication &app) :
-    _app(app),
+CommandLineArguments::CommandLineArguments() :
     _settingsFile() {
 }
 
 bool CommandLineArguments::parseArguments() {
     QCoreApplication::setApplicationName("Raider");
-    QCoreApplication::setApplicationVersion("1.0");
+    QCoreApplication::setApplicationVersion("1.0.1");
 
     QCommandLineOption argHighlight (
-        QStringList() << "hl" << "highlight",
-        "First sign e.g. @ defines the delimiter. Requires 5 delimiters to be a valid expression. Example: @color@pre@regex@post@",
-        "arguments",
-        ""
-    );
+                QStringList() << "hl" << "highlight",
+                "First sign e.g. @ defines the delimiter. Requires 5 delimiters to be a valid expression. Example: @color@pre@regex@post@",
+                "arguments", "");
 
     QCommandLineOption argColors (
-        QStringList() << "cl" << "colors",
-        "Printing a list of available colors.",
-        "",
-        ""
-    );
+                QStringList() << "cl" << "colors",
+                "Printing a list of available colors.",
+                "", "");
+
+    QCommandLineOption argLogDirectory (
+                QStringList() << "lg" << "log",
+                "Saves raider log in the specified directory.",
+                "directory", "");
 
     QList<QCommandLineOption> options;
     options.append(argHighlight);
     options.append(argColors);
+    options.append(argLogDirectory);
 
     QCommandLineParser parser;
     parser.setApplicationDescription("File colorization and transmitting.");
@@ -38,11 +40,17 @@ bool CommandLineArguments::parseArguments() {
         qWarning() << "Error within command line option definition.";
         return false;
     }
-    parser.process(_app);
+    parser.process(*qApp);
 
     _helpText = parser.helpText();
     _highlight = parser.value(argHighlight);
     _printColors = parser.isSet(argColors);
+    _logDirectory = parser.value(argLogDirectory);
+    _logToFileEnabled = QDir(_logDirectory).exists();
+    if ( !_logDirectory.isEmpty() && !_logToFileEnabled) {
+        qWarning() << "Specified directory for logging" << _logDirectory << "may not exist.";
+        return false;
+    }
 
     QStringList positionalArguments = parser.positionalArguments();
     if ( positionalArguments.length() == 1 ) {
@@ -54,6 +62,14 @@ bool CommandLineArguments::parseArguments() {
 
 QString CommandLineArguments::getHelpText() {
     return _helpText;
+}
+
+QString CommandLineArguments::getLogDirectory() {
+    return _logDirectory;
+}
+
+bool CommandLineArguments::getLogToFileEnabled() {
+    return _logToFileEnabled;
 }
 
 QFile &CommandLineArguments::getSettingsFile() {

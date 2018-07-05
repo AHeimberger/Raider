@@ -22,23 +22,17 @@ Options:
                                  Requires 5 delimiters to be a valid expression.
                                  Example: @color@pre@regex@post@
   --cl, --colors                 Printing a list of available colors.
+  --lg, --log <directory>        Saves raider log in the specified directory.
 
 Arguments:
   settings                       Requires path to settings file.
-
+Press <RETURN> to close this window...
 ```
 
 **Example:**
 ```
-// setup the file writer application
-python3 ./app/python/file-writer.py
-
-// create a udp socket do receive datagrams
-python3 ./app/python/udp-receiver.py
-
-// modify settings files
-vi ./app/settings/settings.json
-
-// build raider and start raider
-./raider ABSOLUTE_PATH_TO/settings.json --highlight @light_cyan@\\t@Everyday@@
+python3 ./app/python/file-writer.py                                                  // setup the file writer application
+python3 ./app/python/udp-receiver.py                                                 // create a udp socket do receive datagrams
+vi ./app/settings/settings.json                                                      // modify settings files
+./raider ABSOLUTE_PATH_TO/settings.json --highlight @light_cyan@\\t@Everyday@@       // build raider and start raider
 ```

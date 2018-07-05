@@ -3,6 +3,14 @@
 #include <QFile>
 #include <QTextStream>
 
+
+QString _logFilePath;
+
+void setLogFilePath(const QString &logFilePath)
+{
+    _logFilePath = logFilePath;
+}
+
 void saveLogToFile(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
     Q_UNUSED(context)
 
@@ -29,7 +37,7 @@ void saveLogToFile(QtMsgType type, const QMessageLogContext &context, const QStr
     }
 
     const int FileSizeIn_bytes = 102400;
-    QFile outFile("./raider.log");
+    QFile outFile(_logFilePath);
 
     if (outFile.size() > FileSizeIn_bytes) {
         outFile.remove();
