@@ -1,18 +1,27 @@
 #include "Logger.h"
+#include <QDebug>
 #include <QDateTime>
 #include <QFile>
+#include <QDir>
+#include <QFileInfo>
 #include <QTextStream>
 
 
-QString _logFilePath;
+static QString _logFilePath = "";
+static bool _loggingEnabled = false;
 
 void setLogFilePath(const QString &logFilePath)
 {
     _logFilePath = logFilePath;
+    _loggingEnabled = QFileInfo(logFilePath).absoluteDir().exists() && !logFilePath.isEmpty();
+    qDebug() << "Logging to file: " << (_loggingEnabled ? "enabled" : "disabled");
 }
 
 void saveLogToFile(QtMsgType type, const QMessageLogContext &context, const QString &msg) {
     Q_UNUSED(context)
+
+    if ( !_loggingEnabled )
+        return;
 
     QString level;
     switch (type) {

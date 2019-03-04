@@ -6,7 +6,6 @@
 #include <QFile>
 #include <QString>
 #include <QPair>
-#include <QList>
 
 #include "Colors.h"
 #include "StringColourizeSettings.h"
@@ -17,15 +16,13 @@ public:
     bool parseArguments();
     QString getHelpText();
     QFile &getSettingsFile();
-    QString getLogDirectory();
-    bool getLogToFileEnabled();
+    QString getLogFile();
     bool getPrintColors();
     QPair<Colors::Color, StringColourizeSettings> getHighlight();
 
 private:
     QString _helpText;
-    QString _logDirectory;
-    bool _logToFileEnabled;
+    QString _logFile;
     QFile _settingsFile;
     QString _highlight;
     bool _printColors;

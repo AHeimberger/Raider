@@ -23,10 +23,8 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    if ( commandLineArguments.getLogToFileEnabled() ) {
-        setLogFilePath(QDir(commandLineArguments.getLogDirectory()).filePath("raider.log"));
-        qInstallMessageHandler(saveLogToFile);
-    }
+    setLogFilePath(commandLineArguments.getLogFile());
+    qInstallMessageHandler(saveLogToFile);
 
     if ( commandLineArguments.getPrintColors() ) {
         stream << "Available Colors" << endl;

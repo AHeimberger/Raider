@@ -1,6 +1,6 @@
 #include "CommandLineArguments.h"
 #include <QDebug>
-#include <QDir>
+
 
 CommandLineArguments::CommandLineArguments() :
     _settingsFile() {
@@ -20,15 +20,15 @@ bool CommandLineArguments::parseArguments() {
                 "Printing a list of available colors.",
                 "", "");
 
-    QCommandLineOption argLogDirectory (
+    QCommandLineOption argLogFile (
                 QStringList() << "lg" << "log",
-                "Saves raider log in the specified directory.",
-                "directory", "");
+                "Saves raider log in the specified file.",
+                "file", "");
 
     QList<QCommandLineOption> options;
     options.append(argHighlight);
     options.append(argColors);
-    options.append(argLogDirectory);
+    options.append(argLogFile);
 
     QCommandLineParser parser;
     parser.setApplicationDescription("File colorization and transmitting.");
@@ -45,12 +45,7 @@ bool CommandLineArguments::parseArguments() {
     _helpText = parser.helpText();
     _highlight = parser.value(argHighlight);
     _printColors = parser.isSet(argColors);
-    _logDirectory = parser.value(argLogDirectory);
-    _logToFileEnabled = QDir(_logDirectory).exists();
-    if ( !_logDirectory.isEmpty() && !_logToFileEnabled) {
-        qWarning() << "Specified directory for logging" << _logDirectory << "may not exist.";
-        return false;
-    }
+    _logFile = parser.value(argLogFile);
 
     QStringList positionalArguments = parser.positionalArguments();
     if ( positionalArguments.length() == 1 ) {
@@ -64,12 +59,8 @@ QString CommandLineArguments::getHelpText() {
     return _helpText;
 }
 
-QString CommandLineArguments::getLogDirectory() {
-    return _logDirectory;
-}
-
-bool CommandLineArguments::getLogToFileEnabled() {
-    return _logToFileEnabled;
+QString CommandLineArguments::getLogFile() {
+    return _logFile;
 }
 
 QFile &CommandLineArguments::getSettingsFile() {
