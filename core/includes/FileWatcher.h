@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QFileInfo>
-#include <QFile>
 #include <QFileSystemWatcher>
 
 #include "FileReadOperations.h"
@@ -13,11 +12,16 @@ class FileWatcher: public QObject {
 
 public:
     FileWatcher(const QString &filePath, FileReadOperations &fileReadOperations);
-    bool start(int numberOfLines);
+    void start(int numberOfLines);
 
 protected slots:
     void handleFileChanged(const QString &filePath);
     void handleDirectoryChanged(const QString &directoryPath);
+
+private:
+    QStringList getParentDirectories();
+    void printWatchFiles();
+    void printWatchDirectories();
 
 private:
 	QFileSystemWatcher _watcher;

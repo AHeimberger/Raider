@@ -7,10 +7,7 @@
 #include "UdpTransmission.h"
 #include <QTextStream>
 #include <QCoreApplication>
-#include <QDir>
 #include <QFile>
-#include <QBuffer>
-#include <QDebug>
 
 int main(int argc, char *argv[]) {
 
@@ -51,9 +48,6 @@ int main(int argc, char *argv[]) {
     QObject::connect(&fileReadOperations, &FileReadOperations::readString,
                      &udpTransmission, &UdpTransmission::doStringOperation);
 
-    if ( !fileWatcher.start(5) ) {
-        return -1;
-    }
-
+    fileWatcher.start(5);
     return app.exec();
 }
