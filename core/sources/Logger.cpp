@@ -12,6 +12,9 @@ static bool _loggingEnabled = false;
 
 void setLogFilePath(const QString &logFilePath)
 {
+    if (logFilePath.isEmpty())
+        return;
+
     _logFilePath = logFilePath;
     _loggingEnabled = QFileInfo(logFilePath).absoluteDir().exists() && !logFilePath.isEmpty();
     qDebug() << "Logging to file: " << (_loggingEnabled ? "enabled" : "disabled");
